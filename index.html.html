@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>甘肃华辰农业 | 高原夏菜品质保障</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #2d6a4f;
+            --secondary-color: #52b788;
+            --accent-color: #d8f3dc;
+            --text-dark: #1f2937;
+            --text-light: #6b7280;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #f8faf5;
+        }
+        
+        /* 隐藏可能的外部注入元素 */
+        body > div[style*="position: fixed"],
+        body > div[style*="position: absolute"],
+        body > iframe[src*="ad"],
+        body > iframe[src*="banner"],
+        body > a[href*="coze"],
+        body > a[href*="扣子"],
+        body > div[id*="footer"][style*="position"],
+        .fixed-banner,
+        .floating-banner,
+        .powered-by,
+        [class*="branding"],
+        [class*="copyright"]:not(.footer-bottom .copyright) {
+            display: none !important;
+            visibility: hidden !important;
+        }
+        
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 106, 79, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1920&q=80') center/cover;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            color: var(--white);
+            max-width: 700px;
+        }
+        
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .stat-item {
+            text-align: left;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(45, 106, 79, 0.4);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+        
+        /* 产地优势 */
+        .origin {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-tag {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .origin-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .origin-card {
+            background: linear-gradient(135deg, #f8faf5 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e8f5e9;
+        }
+        
+        .origin-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(45, 106, 79, 0.15);
+        }
+        
+        .origin-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            color: var(--white);
+        }
+        
+        .origin-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .origin-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        /* 产品展示 */
+        .products {
+            padding: 6rem 0;
+            background: #f8faf5;
+        }
+        
+        .products-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+        
+        .products-intro h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .products-intro p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        
+        .product-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: var(--white);
+            color: var(--text-dark);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            border: 2px solid #e8f5e9;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gradient);
+            color: var(--white);
+            border-color: transparent;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(45, 106, 79, 0.2);
+        }
+        
+        .product-image {
+            height: 250px;
+            background: linear-gradient(135deg, #e8f5e9 0%, #d8f3dc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-category {
+            color: var(--secondary-color);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-tag {
+            background: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid #e8f5e9;
+        }
+        
+        .supply-period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .product-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: gap 0.3s ease;
+        }
+        
+        .product-link:hover {
+            gap: 0.5rem;
+        }
+        
+        /* 数据展示 */
+        .stats {
+            background: var(--gradient);
+            padding: 5rem 0;
+            color: var(--white);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-desc {
+            font-size: 0.9rem;
+            opacity: 0.75;
+        }
+        
+        /* 联系方式 */
+        .contact {
+            padding: 6rem 0;
+            background: var(--white);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .contact-info h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .contact-info p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .contact-text {
+            flex: 1;
+        }
+        
+        .contact-label {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.2rem;
+        }
+        
+        .contact-value {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .contact-form {
+            background: #f8faf5;
+            border-radius: 20px;
+            padding: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e8f5e9;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            background: var(--gradient);
+            color: var(--white);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(45, 106, 79, 0.3);
+        }
+        
+        /* 页脚 */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-desc {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                gap: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .origin-grid,
+            .products-grid,
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 120px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .origin-grid,
+            .products-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+        
+        /* 动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    <span>华辰农业</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#origin">产地优势</a></li>
+                    <li><a href="#products">产品中心</a></li>
+                    <li><a href="#stats">企业实力</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+                <a href="#contact" class="nav-cta">立即咨询</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-certificate"></i> 高原夏菜品质保障
+                </div>
+                <h1>祁连雪水灌溉<br>黄土高原培育</h1>
+                <p>甘肃华辰农业——专注高原夏菜，从田间到餐桌的全程品质把控，为消费者提供绿色健康的优质农产品</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5000+</span>
+                        <span class="stat-label">亩标准化种植基地</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">固定务工人员</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">300万</span>
+                        <span class="stat-label">注册资本实缴</span>
+                    </div>
+                </div>
+                <div class="hero-cta">
+                    <a href="#products" class="btn-primary">查看产品</a>
+                    <a href="#contact" class="btn-secondary">联系我们</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产地优势 -->
+    <section class="origin" id="origin">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">产地优势</span>
+                <h2 class="section-title">得天独厚的自然条件</h2>
+                <p class="section-subtitle">立足河西走廊高原夏菜核心产区，四大优势铸就高品质农产品</p>
+            </div>
+            <div class="origin-grid">
+                <div class="origin-card">
+                    <div class="origin-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>区位优势</h3>
+                    <p>立足金昌、武威两大农业强市，河西走廊高原夏菜核心产区，完善的物流体系与广阔消费市场</p>
+                </div>
+                <div class="origin-card">
+                    <div class="origin-icon">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <h3>水源优势</h3>
+                    <p>祁连山冰雪融水灌溉，纯净无污染，矿物质丰富，造就优质农产品的天然基础</p>
+                </div>
+                <div class="origin-card">
+                    <div class="origin-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3>气候优势</h3>
+                    <p>海拔高、光照足、昼夜温差大，夏季平均气温18℃，天然病虫害隔离带，积累更多干物质</p>
+                </div>
+                <div class="origin-card">
+                    <div class="origin-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>土壤优势</h3>
+                    <p>黄土高原土壤有机质含量高，肥力充足，培育出口感脆甜、花球紧实的高品质蔬菜</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品中心 -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="products-intro">
+                <h2>高原夏菜 · 源自祁连山下</h2>
+                <p>我们在金昌、武威、永昌、张掖等优质产区布局标准化种植基地，依托祁连雪水灌溉和黄土培育，打造高品质高原夏菜产品体系</p>
+            </div>
+            
+            <div class="product-filters">
+                <button class="filter-btn active">全部产品</button>
+                <button class="filter-btn">叶菜类</button>
+                <button class="filter-btn">根茎类</button>
+                <button class="filter-btn">特色产品</button>
+            </div>
+            
+            <div class="products-grid">
+                <!-- 娃娃菜 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">畅销产品</div>
+                        <img src="https://www.coze.cn/s/gHwSuoBFHtY/?width_height=960x1280" alt="娃娃菜" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">叶菜类</div>
+                        <h3 class="product-title">娃娃菜</h3>
+                        <div class="product-features">
+                            <span class="feature-tag">祁连雪水</span>
+                            <span class="feature-tag">口感脆甜</span>
+                            <span class="feature-tag">花球紧实</span>
+                        </div>
+                        <div class="product-meta">
+                            <span class="supply-period"><i class="far fa-clock"></i> 全年供应</span>
+                            <a href="#contact" class="product-link">立即咨询 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 西兰花 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">品质优良</div>
+                        <img src="https://www.coze.cn/s/l5FIDJ8kfj4/?width_height=1080x1440" alt="西兰花" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">叶菜类</div>
+                        <h3 class="product-title">西兰花</h3>
+                        <div class="product-features">
+                            <span class="feature-tag">绿色种植</span>
+                            <span class="feature-tag">营养丰富</span>
+                            <span class="feature-tag">错峰上市</span>
+                        </div>
+                        <div class="product-meta">
+                            <span class="supply-period"><i class="far fa-clock"></i> 夏季主产</span>
+                            <a href="#contact" class="product-link">立即咨询 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 松花菜 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.coze.cn/s/gxf4C8u-dqo/?width_height=1024x710" alt="松花菜" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">叶菜类</div>
+                        <h3 class="product-title">松花菜</h3>
+                        <div class="product-features">
+                            <span class="feature-tag">错峰供应</span>
+                            <span class="feature-tag">优质产区</span>
+                            <span class="feature-tag">口感鲜美</span>
+                        </div>
+                        <div class="product-meta">
+                            <span class="supply-period"><i class="far fa-clock"></i> 多季供应</span>
+                            <a href="#contact" class="product-link">立即咨询 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 莴笋 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.coze.cn/s/i84ICCK06u8/?width_height=1280x1707" alt="莴笋" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">根茎类</div>
+                        <h3 class="product-title">莴笋</h3>
+                        <div class="product-features">
+                            <span class="feature-tag">产地直供</span>
+                            <span class="feature-tag">新鲜采摘</span>
+                            <span class="feature-tag">营养价值高</span>
+                        </div>
+                        <div class="product-meta">
+                            <span class="supply-period"><i class="far fa-clock"></i> 夏季主产</span>
+                            <a href="#contact" class="product-link">立即咨询 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 甘蓝 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">技术领先</div>
+                        <img src="https://www.coze.cn/s/jqG1cESLngc/?width_height=960x1282" alt="甘蓝" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">根茎类</div>
+                        <h3 class="product-title">甘蓝</h3>
+                        <div class="product-features">
+                            <span class="feature-tag">标准化种植</span>
+                            <span class="feature-tag">耐储运</span>
+                            <span class="feature-tag">供应稳定</span>
+                        </div>
+                        <div class="product-meta">
+                            <span class="supply-period"><i class="far fa-clock"></i> 全年供应</span>
+                            <a href="#contact" class="product-link">立即咨询 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 沙葱 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <div class="product-badge">特色产品</div>
+                        <img src="https://www.coze.cn/s/fZB5AiWiGic/?width_height=1260x1251" alt="沙葱" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">特色产品</div>
+                        <h3 class="product-title">沙葱</h3>
+                        <div class="product-features">
+                            <span class="feature-tag">地方特色</span>
+                            <span class="feature-tag">营养丰富</span>
+                            <span class="feature-tag">独特风味</span>
+                        </div>
+                        <div class="product-meta">
+                            <span class="supply-period"><i class="far fa-clock"></i> 季节性供应</span>
+                            <a href="#contact" class="product-link">立即咨询 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 西芹 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.coze.cn/s/iPbYH_iTkHc/?width_height=1080x1919" alt="西芹" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">叶菜类</div>
+                        <h3 class="product-title">西芹</h3>
+                        <div class="product-features">
+                            <span class="feature-tag">高原夏菜</span>
+                            <span class="feature-tag">口感鲜脆</span>
+                            <span class="feature-tag">品质稳定</span>
+                        </div>
+                        <div class="product-meta">
+                            <span class="supply-period"><i class="far fa-clock"></i> 全年供应</span>
+                            <a href="#contact" class="product-link">立即咨询 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 小葱 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://www.coze.cn/s/k8yiacf6Dhw/?width_height=157x210" alt="小葱" style="max-width: 80%; max-height: 80%; object-fit: contain;">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">调味蔬菜</div>
+                        <h3 class="product-title">小葱</h3>
+                        <div class="product-features">
+                            <span class="feature-tag">新鲜采摘</span>
+                            <span class="feature-tag">香味浓郁</span>
+                            <span class="feature-tag">产地直供</span>
+                        </div>
+                        <div class="product-meta">
+                            <span class="supply-period"><i class="far fa-clock"></i> 全年供应</span>
+                            <a href="#contact" class="product-link">立即咨询 <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据展示 -->
+    <section class="stats" id="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">5000</span>
+                    <span class="stat-label">亩种植基地</span>
+                    <span class="stat-desc">标准化种植基地，金昌、武威、永昌、张掖优质产区</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">固定务工人员</span>
+                    <span class="stat-desc">常年吸纳周边村民务工，成为地方政府认可的村民增收稳定器</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">300+</span>
+                    <span class="stat-label">年临聘农民工</span>
+                    <span class="stat-desc">带动更多农户增收致富，助力乡村振兴战略落地</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2000万</span>
+                    <span class="stat-label">年发放工资</span>
+                    <span class="stat-desc">为当地村民带来稳定收入，践行社会责任</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>期待与您合作</h2>
+                    <p>无论是产品采购、合作洽谈还是技术支持，我们随时为您服务</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">公司地址</span>
+                                <span class="contact-value">甘肃省金昌市永昌县朱王堡镇华辰农业有限公司</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">业务咨询热线</span>
+                                <span class="contact-value">13079396666</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">联系电话</span>
+                                <span class="contact-value">13079396666</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <span class="contact-label">工作时间</span>
+                                <span class="contact-value">周一至周六 8:00 - 18:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">您的姓名</label>
+                            <input type="text" class="form-input" placeholder="请输入您的姓名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">联系电话</label>
+                            <input type="tel" class="form-input" placeholder="请输入您的联系电话">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">咨询内容</label>
+                            <textarea class="form-input form-textarea" placeholder="请描述您的需求..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">提交咨询</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-leaf"></i>
+                        <span>华辰农业</span>
+                    </div>
+                    <p class="footer-desc">甘肃华辰农业发展有限公司是一家专注于现代农业全链条发展的创新型企业，致力于成为区域农业产业化发展的重要参与者。</p>
+                </div>
+                <div class="footer-links">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#origin">产地优势</a></li>
+                        <li><a href="#products">产品中心</a></li>
+                        <li><a href="#stats">企业实力</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>联系方式</h4>
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i> 13079396666</li>
+                        <li><i class="fas fa-mobile-alt"></i> 13079396666</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 甘肃省金昌市永昌县朱王堡镇华辰农业有限公司</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 甘肃华辰农业有限公司 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // 产品筛选
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
